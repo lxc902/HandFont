@@ -1,13 +1,21 @@
 from django.conf.urls import patterns, include, url
+from font.views import  *
+from django.views.generic import TemplateView
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'HandFont.views.home', name='home'),
-    # url(r'^HandFont/', include('HandFont.foo.urls')),
+
+#    url(r'^register/$', TemplateView.as_view(template_name='register.html')),
+    url(r'^$', view_register),
+    url(r'^register/$', view_register),
+    url(r'^register_btn/$', register_btn),
+    url(r'^login/$', view_login),
+    url(r'^login_btn/$', login_btn),
+
+    url(r'^home/$', view_home),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

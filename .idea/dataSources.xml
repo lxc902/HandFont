@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="3119683430">
-    <data-source source="LOCAL" name="Django default" uuid="5a2d4626-637f-4057-a607-95bba95a1ee8">
-      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql:///</jdbc-url>
+  <component name="DataSourceManagerImpl" format="xml" hash="1737648176">
+    <data-source source="LOCAL" name="Django default" uuid="a62d3109-eeaa-4db8-816e-7162094f54c4">
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/handfont.db</jdbc-url>
       <libraries>
         <library>
-          <url>file://$USER_HOME$/.PyCharm30/config/jdbc-drivers/mysql-connector-license.txt</url>
-        </library>
-        <library>
-          <url>jar://$USER_HOME$/.PyCharm30/config/jdbc-drivers/mysql-connector-java-5.1.26-bin.jar!/</url>
+          <url>file://$PROJECT_DIR$/sqlite-jdbc-3.7.6.3-20110609.081603-3.jar</url>
         </library>
       </libraries>
     </data-source>
