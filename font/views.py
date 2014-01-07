@@ -36,6 +36,9 @@ def register_btn(request):
     if error:
         return handle_error(request, error)
 
+    if not p['username'] or not p['password']:
+        return handle_error(request, 'invalid username or password')
+
     res = Users.objects.filter(username=p['username'])
     if res:
         return handle_error(request, 'duplicate username')
@@ -61,14 +64,12 @@ def login_btn(request):
         return handle_error(request, error)
 
     res = Users.objects.filter(username=p['username'])
-    if not res:
-        return handle_error(request, 'no such user')
-
-    user = res[0]
-    if user.password != p['password']:
-        resp = view_login(request)
+    if not res or res[0].password != p['password']:
+        resp = redirect('/login/')
         resp.set_cookie('login_error')
         return resp
+
+    user = res[0]
 
     user.sid = random.randrange(1e9)
     user.last_login = datetime.datetime.now()
@@ -80,5 +81,22 @@ def login_btn(request):
     return resp
 
 
+def logged(request):
+    uid = request.COOKIES.get('uid')
+    sid = request.COOKIES.get('sid')
+
+    res = Users.objects.filter(id=uid)
+    if not res:
+        return False
+    user = res[0]
+    if sid != user.sid:
+        return False
+
+    return True
+
+
 def view_home(request):
+    if not logged(request):
+        return handle_error(request, 'not logged in')
+
     return render_to_response('home.html', csrf(request))
